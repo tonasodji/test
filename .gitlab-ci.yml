@@ -1,0 +1,3 @@
+
+analyze:
+  trigger: swquality/openssh-portable

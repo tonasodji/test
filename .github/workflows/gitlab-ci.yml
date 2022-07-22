@@ -1,5 +1,3 @@
-40 lines (34 sloc)  1.19 KB
-
 name: "Analyze"
 on:
   workflow_dispatch:

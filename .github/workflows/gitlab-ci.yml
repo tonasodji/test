@@ -1,6 +1,6 @@
 name: "Analyze"
 on:
-  workflow_dispatch:
+  push:
 env:
   PROJECT_PATH: "tools/test"
   RELEASE_BRANCH: "main"

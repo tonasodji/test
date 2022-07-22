@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Analyze
       run: |
-        git clone https://github.com/sodji98/hello-world .gitrepo
+        git clone https://github.com/tonasodji/test.git .gitrepo
         # Prepare for build
         .girepo/prepare.sh
         # Analyze the project

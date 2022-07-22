@@ -30,4 +30,4 @@ eval_file("report__common.ecl")
 # NEEDED: load the eclair_report settings to generate textual reports.
 eval_file("report__textual.ecl")
 
-reports_codeclimate("ECLAIR/gl-code-quality-report.json")
+reports_sarif("gh-quality-report.sarif")

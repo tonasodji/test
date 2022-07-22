@@ -4,7 +4,7 @@ name: "Analyze"
 on:
   workflow_dispatch:
 env:
-  PROJECT_PATH: "tools/${GITHUB_REPOSITORY}"
+  PROJECT_PATH: "tools/test"
   RELEASE_BRANCH: "main"
   ECD_DIR: "/home/emelin/github/${GITHUB_REPOSITORY}/${GITHUB_RUN_NUMBER}"
   ECD_FILE: "${ECD_DIR}/PROJECT.ecd"
@@ -18,17 +18,17 @@ jobs:
       uses: actions/checkout@v2
     - name: Analyze
       run: |
-        git clone -b "${RELEASE_BRANCH}" --depth 1 https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}:8444/${PROJECT_PATH}.git .gitlab
+        git clone https://github.com/sodji98/hello-world .github
       # Prepare for build
-        .gitlab/prepare.sh
+        .github/prepare.sh
     # Analyze the project
-        .gitlab/analyze.sh openssh
+        .gitlab/analyze.sh hello-world
     # Make the directory for the ECLAIR project database
-        ssh eclair-gitlab@localhost "mkdir -p ${ECD_DIR} && rm -f ${LAST_ECD_DIR} && ln -s ${ECD_DIR} ${LAST_ECD_DIR}"
+        "mkdir -p ${ECD_DIR} && rm -f ${LAST_ECD_DIR} && ln -s ${ECD_DIR} ${LAST_ECD_DIR}"
     # Copy the project database
-        scp ECLAIR/out/PROJECT.ecd eclair-gitlab@localhost:${ECD_FILE}
+        scp ECLAIR/out/PROJECT.ecd ${ECD_FILE}
     # Publish the ECLAIR report link
-        echo "https://eclairit.com:3787/fs/home/eclair-gitlab/gitlab/$CI_PROJECT_PATH/$CI_JOB_ID/PROJECT.ecd"
+        echo "https://eclairit.com:3787/fs/home/emelin/github/$GITHUB_REPOSITORY/$GITHUB_RUN_NUMBER/PROJECT.ecd"
     # Create the ECLAIR badge
         anybadge --label=ECLAIR --value=default --file=ECLAIR/badge.svg
     - name: Upload Artifact

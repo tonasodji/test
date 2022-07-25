@@ -1,28 +1,27 @@
-name: cfsec
+name: "Upload SARIF"
+
+# Run workflow each time code is pushed to your repository and on a schedule.
+# The scheduled workflow runs every Thursday at 15:45 UTC.
 on:
   push:
-    branches:
-      - main
-  pull_request:
-jobs:
-  cfsec:
-    name: cfsec sarif report
-    runs-on: ubuntu-latest
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
     steps:
-      - name: Clone repo
-        uses: actions/checkout@main
+      # This step checks out a copy of your repository.
+      - name: Checkout repository hello-world
+        uses: actions/checkout@v3
         with:
           repository: sodji98/hello-world
-
-      - name: cfsec
-        uses: cfsec/cfsec-sarif-action@master
-        with:
-          sarif_file: report.sarif         
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: report.sarif  
+          sarif_file: report.sarif

@@ -1,6 +1,6 @@
 name: "Analyze"
 on:
-  push:
+  workflow_dispatch:
 env:
   PROJECT_PATH: "tools/test"
   RELEASE_BRANCH: "main"
@@ -22,7 +22,7 @@ jobs:
         # Prepare for build
         girepo/prepare.sh
         # Analyze the project
-        .gitlab/analyze.sh hello-world
+        gitrepo/analyze.sh hello-world
         # Make the directory for the ECLAIR project database
         "mkdir -p ${ECD_DIR} && rm -f ${LAST_ECD_DIR} && ln -s ${ECD_DIR} ${LAST_ECD_DIR}"
         # Copy the project database

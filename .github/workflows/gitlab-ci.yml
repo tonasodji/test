@@ -12,8 +12,10 @@ jobs:
   Analyze:
     runs-on: eclairit-1
     steps:
-    - name: Checkout repository
+    - name: Checkout repository hello-world
       uses: actions/checkout@v2
+      with:
+        repository: sodji98/hello-world
     - name: Analyze
       run: |
         git clone https://github.com/tonasodji/test.git .gitrepo

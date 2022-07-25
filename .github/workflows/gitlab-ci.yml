@@ -12,6 +12,8 @@ jobs:
   Analyze:
     runs-on: eclairit-1
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Checkout repository hello-world
       uses: actions/checkout@v2
       with:

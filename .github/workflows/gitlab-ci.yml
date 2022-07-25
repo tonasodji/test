@@ -23,6 +23,7 @@ jobs:
         git clone https://github.com/tonasodji/test.git gitrepo
         cd _work/test/test
         ls -la
+        echo "---------------------"
         # Prepare for build
         _tmp/girepo/prepare.sh
         # Analyze the project

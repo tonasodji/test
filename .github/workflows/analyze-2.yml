@@ -17,9 +17,9 @@ jobs:
     - name: Analyze
       run: |
         # Prepare for build
-        prepare.sh
+        ./prepare.sh
         # Analyze the project
-        analyze.sh hello-world
+        ./analyze.sh hello-world
         # Make the directory for the ECLAIR project database
         "mkdir -p ${ECD_DIR} && rm -f ${LAST_ECD_DIR} && ln -s ${ECD_DIR} ${LAST_ECD_DIR}"
         # Copy the project database

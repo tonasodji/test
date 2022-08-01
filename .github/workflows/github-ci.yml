@@ -12,32 +12,17 @@ jobs:
   Analyze:
     runs-on: eclairit-1
     steps:
-    - name: Checkout repository
+    - name: Checkout repository openssh
       uses: actions/checkout@v2
-    - name: Checkout repository hello-world
-      uses: actions/checkout@v3
       with:
-        repository: sodji98/hello-world
+        repository: tonasodji/openssh-portable
     - name: Analyze
       run: |
-        git clone https://github.com/tonasodji/test.git gitrepo
+        git clone https://github.com/tonasodji/test.git
         # Prepare for build
-        girepo/./prepare.sh
+        test/./prepare.sh
         # Analyze the project
-        gitrepo/./analyze.sh hello-world
-        # Make the directory for the ECLAIR project database
-        "mkdir -p ${ECD_DIR} && rm -f ${LAST_ECD_DIR} && ln -s ${ECD_DIR} ${LAST_ECD_DIR}"
-        # Copy the project database
-        scp ECLAIR/out/PROJECT.ecd ${ECD_FILE}
-        # Publish the ECLAIR report link
-        echo "https://eclairit.com:3787/fs/home/emelin/github/$GITHUB_REPOSITORY/$GITHUB_RUN_NUMBER/PROJECT.ecd"
-        # Create the ECLAIR badge
-        anybadge --label=ECLAIR --value=default --file=ECLAIR/badge.svg
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: artifacts
-        path: ECLAIR/out
+        test/./analyze.sh openssh
 
 
     - name: reports SARIF

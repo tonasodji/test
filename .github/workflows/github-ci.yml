@@ -22,7 +22,7 @@ jobs:
         # Prepare for build
         test/./prepare.sh
         # Analyze the project
-        test/./analyze.sh openssh
+        test/analyze.sh openssh
 
 
     - name: reports SARIF
